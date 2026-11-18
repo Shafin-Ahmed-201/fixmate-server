@@ -1,19 +1,30 @@
 {
-  "name": "fixmate-serverr",
+  "name": "fixmate-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "FixMate API — device & home appliance repair platform (Express + MongoDB + Stripe)",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "seed": "node src/seed/seed.js"
   },
-  "keywords": [],
+  "keywords": [
+    "fixmate",
+    "express",
+    "mongodb",
+    "stripe",
+    "better-auth"
+  ],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
+    "@better-auth/utils": "^0.5.1",
     "cors": "^2.8.6",
     "dotenv": "^18.0.10",
     "express": "^5.3.0",
+    "jose": "^6.1.3",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^7.9.0",
     "stripe": "^23.1.0"
   }
