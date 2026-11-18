@@ -6,6 +6,7 @@ import servicesRouter from './routes/services.routes.js';
 import usersRouter from './routes/users.routes.js';
 import bookingsRouter from './routes/bookings.routes.js';
 import paymentsRouter from './routes/payments.routes.js';
+import webhookRouter from './routes/webhook.routes.js';
 
 /** Builds the Express application (pure — no DB or network side effects). */
 export function createApp() {
@@ -19,6 +20,10 @@ export function createApp() {
 
   app.use(cors({ origin: allowedOrigins, credentials: true }));
   app.use(requestLogger);
+
+  // Stripe webhooks must receive the raw body for signature verification,
+  // so this parser is registered BEFORE express.json().
+  app.use('/api/webhook/stripe', express.raw({ type: 'application/json' }));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
@@ -30,6 +35,7 @@ export function createApp() {
   app.use('/api/users', usersRouter);
   app.use('/api/bookings', bookingsRouter);
   app.use('/api/payments', paymentsRouter);
+  app.use('/api/webhook', webhookRouter);
 
   app.use(notFound);
   app.use(errorHandler);
