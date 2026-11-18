@@ -6,6 +6,7 @@ import servicesRouter from './routes/services.routes.js';
 import usersRouter from './routes/users.routes.js';
 import bookingsRouter from './routes/bookings.routes.js';
 import paymentsRouter from './routes/payments.routes.js';
+import adminRouter from './routes/admin.routes.js';
 import webhookRouter from './routes/webhook.routes.js';
 
 /** Builds the Express application (pure — no DB or network side effects). */
@@ -35,6 +36,7 @@ export function createApp() {
   app.use('/api/users', usersRouter);
   app.use('/api/bookings', bookingsRouter);
   app.use('/api/payments', paymentsRouter);
+  app.use('/api/admin', adminRouter);
   app.use('/api/webhook', webhookRouter);
 
   app.use(notFound);
