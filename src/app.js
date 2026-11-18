@@ -3,6 +3,7 @@ import cors from 'cors';
 import { requestLogger } from './middleware/logger.js';
 import { notFound, errorHandler } from './middleware/error.js';
 import servicesRouter from './routes/services.routes.js';
+import usersRouter from './routes/users.routes.js';
 
 /** Builds the Express application (pure — no DB or network side effects). */
 export function createApp() {
@@ -24,6 +25,7 @@ export function createApp() {
   });
 
   app.use('/api/services', servicesRouter);
+  app.use('/api/users', usersRouter);
 
   app.use(notFound);
   app.use(errorHandler);
