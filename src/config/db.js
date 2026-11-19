@@ -61,7 +61,7 @@ async function ensureIndexes(db) {
       try {
         await db.collection(name).createIndex(index.key, options);
       } catch (err) {
-        console.warn(`[db] skipped index ${name}.${index.name}: ${err.message}`);
+        // console.warn(`[db] skipped index ${name}.${index.name}: ${err.message}`);
       }
     }
   }

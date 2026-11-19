@@ -58,8 +58,9 @@ router.post(
       throw new ApiError(400, 'Booking amount is invalid');
     }
 
-    const productData = { name: booking.serviceTitle || 'Repair service' };
-    if (booking.serviceImage) productData.images = [booking.serviceImage];
+    const productData = {
+  name: booking.serviceTitle || 'Repair service',
+};
 
     const session = await getStripe().checkout.sessions.create({
       mode: 'payment',
